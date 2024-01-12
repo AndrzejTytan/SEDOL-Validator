@@ -1,6 +1,0 @@
-
-n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(é¡€Àÿÿÿÿÿ8ò±ÇýÎ1
-µ
-java:S1598"žThis file "aoo.java" should be located in "pl\danwys" directory, not in "C:\Code\SEDOL_Validator\src\main\java\pl.danwys"(Do not use dots in directory names).(ñÓ¹ä
-d
-java:S2094"BRemove this empty class, write its code or make it an "interface".(é¡€Àÿÿÿÿÿ8õ±ÇýÎ1

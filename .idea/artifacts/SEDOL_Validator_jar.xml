@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SEDOL_Validator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SEDOL_Validator_jar</output-path>
+    <root id="archive" name="SEDOL_Validator.jar">
+      <element id="module-output" name="SEDOL_Validator" />
+    </root>
+  </artifact>
+</component>

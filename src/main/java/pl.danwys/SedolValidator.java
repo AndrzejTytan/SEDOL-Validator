@@ -7,9 +7,8 @@ import static java.util.Map.entry;
 import java.util.regex.*;
 
 public class SedolValidator {
-    private static final Pattern SEDOL_HEAD_REGEX = Pattern.compile("^[^AEIOU]{6}");
-    private static final Pattern SEDOL_TAIL_REGEX = Pattern.compile("^[0-9]");
     private static final int SEDOL_LEGAL_LENGTH = 7;
+    private static final Pattern VALID_SEDOL_REGEX = Pattern.compile("^[^AEIOU0-9]{6}[0-9]$");
     private static final int[] POSITION_WEIGHTINGS = {1, 3, 1, 7, 3, 9, 1};
     private static final Map<Character, Integer> LETTER_VALUES = Map.ofEntries(
             entry('B', 11),
@@ -39,11 +38,8 @@ public class SedolValidator {
     }
 
     public static boolean validate(String sedol) {
-        String sedolHead = sedol.substring(0, 6);
-        String sedolTail = sedol.substring(6, 7);
         return validateLength(sedol) && //short circuit - returns false immediately if first expression is false
-                validateHead(sedolHead) &&
-                validateTail(sedolTail) &&
+                validateCharacters(sedol) &&
                 calculateWeightedSum(sedol) % 10 == 0;
     }
 
@@ -51,12 +47,8 @@ public class SedolValidator {
         return sedol.length() == SEDOL_LEGAL_LENGTH;
     }
 
-    private static boolean validateHead(String sedolHead) {
-        return SEDOL_HEAD_REGEX.matcher(sedolHead).find();
-    }
-
-    private static boolean validateTail(String sedolTail) {
-        return SEDOL_TAIL_REGEX.matcher(sedolTail).find();
+    private static boolean validateCharacters(String sedol) {
+        return VALID_SEDOL_REGEX.matcher(sedol).find();
     }
 
     private static int calculateWeightedSum(String sedol) {
