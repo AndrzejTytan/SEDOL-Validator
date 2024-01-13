@@ -1,6 +1,7 @@
 
-b	java:S112A"FDefine and throw a dedicated exception instead of using a generic one.(Ôô¯÷8¢¤àÿÎ1
+b	java:S112:"FDefine and throw a dedicated exception instead of using a generic one.(Ôô¯÷8¢¤àÿÎ1
 Ç
 java:S1598"©This file "SedolValidator.java" should be located in "pl\danwys" directory, not in "C:\Code\SEDOL_Validator\src\main\java\pl.danwys"(Do not use dots in directory names).(ñÓ¹ä8¤¤àÿÎ1
 Y
-java:S6353"<Use concise character class syntax '\\d' instead of '[0-9]'.(öˆæ8´¤àÿÎ1
+java:S6353
+"<Use concise character class syntax '\\d' instead of '[0-9]'.(¼ÒÈ÷8Ì—»šĞ1

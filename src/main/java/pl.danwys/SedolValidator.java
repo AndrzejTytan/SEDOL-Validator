@@ -7,8 +7,7 @@ import static java.util.Map.entry;
 import java.util.regex.*;
 
 public class SedolValidator {
-    private static final int SEDOL_LEGAL_LENGTH = 7;
-    private static final Pattern VALID_SEDOL_REGEX = Pattern.compile("^[^AEIOU0-9]{6}[0-9]$");
+    private static final Pattern VALID_SEDOL_REGEX = Pattern.compile("^[BCDFGHJKLMNPQRSTVWXYZ0-9]{6}[0-9]$");
     private static final int[] POSITION_WEIGHTINGS = {1, 3, 1, 7, 3, 9, 1};
     private static final Map<Character, Integer> LETTER_VALUES = Map.ofEntries(
             entry('B', 11),
@@ -38,15 +37,9 @@ public class SedolValidator {
     }
 
     public static boolean validate(String sedol) {
-        return validateLength(sedol) && //short circuit - returns false immediately if first expression is false
-                validateCharacters(sedol) &&
+        return  validateCharacters(sedol) && //short circuit - returns false immediately if first expression is false
                 calculateWeightedSum(sedol) % 10 == 0;
     }
-
-    private static boolean validateLength(String sedol) {
-        return sedol.length() == SEDOL_LEGAL_LENGTH;
-    }
-
     private static boolean validateCharacters(String sedol) {
         return VALID_SEDOL_REGEX.matcher(sedol).find();
     }
