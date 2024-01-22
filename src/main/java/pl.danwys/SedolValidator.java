@@ -36,15 +36,15 @@ public class SedolValidator {
     private SedolValidator() {
     }
 
-    public static boolean validate(String sedol) {
-        return  validateCharacters(sedol) && //short circuit - returns false immediately if first expression is false
+    public static boolean isValid(String sedol) {
+        return  hasValidCharacters(sedol) && //short circuit - returns false immediately if first expression is false
                 calculateWeightedSum(sedol) % 10 == 0;
     }
-    private static boolean validateCharacters(String sedol) {
+    public static boolean hasValidCharacters(String sedol) {
         return VALID_SEDOL_REGEX.matcher(sedol).find();
     }
 
-    private static int calculateWeightedSum(String sedol) {
+    public static int calculateWeightedSum(String sedol) {
         char[] sedolCharArr = sedol.toCharArray();
         int sum = 0;
         for (int i = 0; i < sedolCharArr.length; i++) {
