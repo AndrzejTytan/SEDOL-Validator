@@ -18,12 +18,20 @@ public class App {
 
         String inputFileLine;
         String sedol;
+        int invalidSedolCount = 0;
         while (inputFileScanner.hasNextLine()) {
             inputFileLine = inputFileScanner.nextLine();
             sedol = getSedolFromFileLine(inputFileLine, inputFileSedolColumnIndex);
             if (!SedolValidator.isValid(sedol)) {
                 appendLineWithInvalidSedolToFile(inputFileLine, invalidSedolsFile);
+                invalidSedolCount++;
             }
+        }
+
+        if (invalidSedolCount == 0) {
+            String message = String.format("No invalid sedols found in file %s column %s.",
+                    inputFile, inputFileSedolColumnIndex + 1);
+            appendLineWithInvalidSedolToFile(message, invalidSedolsFile);
         }
     }
     private static File setInputFile(String[] args) {
