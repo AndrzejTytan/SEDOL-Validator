@@ -38,7 +38,7 @@ public class App {
 
     private static File createOutputFile() throws IOException {
         String today = LocalDate.now().toString();
-        Path outputFile = Path.of("invalid sedols " + today + " .csv");
+        Path outputFile = Path.of("invalid sedols " + today + ".csv");
         if (!Files.exists(outputFile)) {
             Files.createFile(outputFile);
         }
@@ -51,6 +51,7 @@ public class App {
     }
 
     private static void appendLineWithInvalidSedolToFile(String inputFileLine, File invalidSedolsFile) throws IOException {
+        inputFileLine = inputFileLine + "\n";
         Files.writeString(invalidSedolsFile.toPath(), inputFileLine, StandardOpenOption.APPEND);
     }
 
