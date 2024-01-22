@@ -10,23 +10,14 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws IOException {
-
-        File inputFile;
-        int inputFileSedolColumnIndex;
-
-        if (args.length != 2) { // no or invalid number of cmd args
-            inputFile = new File("sedols.csv");
-            inputFileSedolColumnIndex = 0;
-        } else {
-            inputFile = new File(args[0]);
-            inputFileSedolColumnIndex = Integer.parseInt(args[1]);
-        }
+        File inputFile = setInputFile(args);
+        int inputFileSedolColumnIndex = setInputFileSedolColumnIndex(args);
 
         File invalidSedolsFile = createOutputFile();
         Scanner inputFileScanner = new Scanner(inputFile);
+
         String inputFileLine;
         String sedol;
-
         while (inputFileScanner.hasNextLine()) {
             inputFileLine = inputFileScanner.nextLine();
             sedol = getSedolFromFileLine(inputFileLine, inputFileSedolColumnIndex);
@@ -34,6 +25,24 @@ public class App {
                 appendLineWithInvalidSedolToFile(inputFileLine, invalidSedolsFile);
             }
         }
+    }
+    private static File setInputFile(String[] args) {
+        File inputFile;
+        if (args.length != 2) { // no or invalid number of cmd args - default value
+            inputFile = new File("sedols.csv");
+        } else {
+            inputFile = new File(args[0]);
+        }
+        return inputFile;
+    }
+    private static int setInputFileSedolColumnIndex(String[] args) {
+        int inputFileSedolColumnIndex;
+        if (args.length != 2) { // no or invalid number of cmd args - default value
+            inputFileSedolColumnIndex = 0;
+        } else {
+            inputFileSedolColumnIndex = Integer.parseInt(args[1]);
+        }
+        return inputFileSedolColumnIndex;
     }
 
     private static File createOutputFile() throws IOException {
